@@ -55,3 +55,35 @@ Add the next code:
 		        return dogs
 		    }
 		}
+
+3 Step (Code Api)
+
+			func testConnectivity() {
+	        Alamofire.request(DogApi.getDogs)
+	        .validate()
+	        .responseJSON(completionHandler: { response in
+	            switch response.result {
+	            case .success(let value):
+	                let json = JSON(value)
+	                print(json)
+	                let error = json["status"].stringValue
+	                if error != "null"{
+	                    let dogs = Dog.buildAll(from: json["data"].arrayValue)
+	                    print("Found \(dogs.count) Dogs")
+	                }
+	            case .failure(let error):
+	                print("Networking Error: \(error.localizedDescription)")
+	            }
+	            
+	        })
+	    }
+
+	And add the funcion on 
+
+		override func viewDidLoad() {
+        super.viewDidLoad()
+        testConnectivity()     
+    }
+
+
+    

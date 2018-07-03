@@ -26,14 +26,14 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="5Nh-eT-rac">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="5Nh-eT-rac" customClass="DogsCell" customModule="iDogView" customModuleProvider="target">
                                 <rect key="frame" x="78.5" y="0.0" width="218" height="170"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                     <rect key="frame" x="0.0" y="0.0" width="218" height="170"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dogshadow" translatesAutoresizingMaskIntoConstraints="NO" id="UR2-ut-dS8">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UR2-ut-dS8">
                                             <rect key="frame" x="8" y="8" width="202" height="107"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="107" id="FJf-vW-cGC"/>
@@ -53,6 +53,9 @@
                                     <constraint firstItem="pKG-dK-8Ls" firstAttribute="top" secondItem="UR2-ut-dS8" secondAttribute="bottom" constant="13" id="u9t-gb-MJz"/>
                                     <constraint firstItem="pKG-dK-8Ls" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Nh-eT-rac" secondAttribute="leadingMargin" id="yrS-uh-OTT"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="pictureImageView" destination="UR2-ut-dS8" id="w43-0t-dsQ"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -123,7 +126,6 @@
     </scenes>
     <resources>
         <image name="animal-paw" width="16" height="16"/>
-        <image name="dogshadow" width="640" height="480"/>
         <image name="favorite-heart-button-on" width="16" height="16"/>
     </resources>
 </document>
