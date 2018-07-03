@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SwiftyJSON
+import Alamofire
 
 private let reuseIdentifier = "Cell"
 
@@ -14,7 +16,7 @@ class DogsViewController: UICollectionViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        testConnectivity()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -90,5 +92,25 @@ class DogsViewController: UICollectionViewController {
     
     }
     */
+    
+    func testConnectivity() {
+        Alamofire.request(DogApi.getDogs)
+        .validate()
+        .responseJSON(completionHandler: { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                let error = json["status"].stringValue
+                if error != "null"{
+                    let dogs = Dog.buildAll(from: json["data"].arrayValue)
+                    print("Found \(dogs.count) Dogs")
+                }
+            case .failure(let error):
+                print("Networking Error: \(error.localizedDescription)")
+            }
+            
+        })
+    }
 
 }
