@@ -65,7 +65,7 @@ Add the next code:
 
 		On the file "DogsViewController.swift" add :
 
-			func testConnectivity() {
+			func getDogs {
 	        Alamofire.request(DogApi.getDogs)
 	        .validate()
 	        .responseJSON(completionHandler: { response in
@@ -89,7 +89,7 @@ Add the next code:
 
 		override func viewDidLoad() {
         super.viewDidLoad()
-        testConnectivity()     
+        getDogs()     
     }
 
 4 Step (Api show data)
@@ -120,5 +120,35 @@ Add the next code:
         for last one add on api code:
         	self.dogs = Dog.buildAll(from: json["data"].arrayValue)
             self.collectionView!.reloadData()
+
+5 Step (About Dog)
+		
+		add t
+
+		add the next code above "func getDogs() "
+
+			override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		        print("Selected \(indexPath.row)")
+		        currentSourceIndex = indexPath.row
+		        self.performSegue(withIdentifier: "ShowAboutDog", sender: self)
+		    }
+
+		    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		        if segue.identifier == "ShowAboutDog" {
+		            let aboutDogsViewController = (segue.destination as!
+		            UINavigationController).viewControllers.first as! AboutDogsViewController
+		            aboutDogsViewController.dog = dogs[currentSourceIndex]
+		        }
+		        return
+		    }
+		    
+		    override func viewDidAppear(_ animated: Bool) {
+		        if let collectionView = collectionView {
+		            if collectionView.numberOfItems(inSection: 0) > 0 {
+		                collectionView.reloadItems(at: [IndexPath(
+		                    item: self.currentSourceIndex, section: 0)])
+		            }
+		        }
+    }
 
 

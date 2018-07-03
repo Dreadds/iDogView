@@ -25,6 +25,8 @@ class DogsCell: UICollectionViewCell {
 
 class DogsViewController: UICollectionViewController {
     var dogs: [Dog] = []
+    //Selected Item
+    var currentSourceIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,11 +95,33 @@ class DogsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
         return false
     }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    
+     */
+    //override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    //}
+    //Segue function
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("Selected \(indexPath.row)")
+        currentSourceIndex = indexPath.row
+        self.performSegue(withIdentifier: "ShowAboutDog", sender: self)
     }
-    */
+    //Send object data for another controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowAboutDog" {
+            let aboutDogsViewController = (segue.destination as!
+            UINavigationController).viewControllers.first as! AboutDogsViewController
+            aboutDogsViewController.dog = dogs[currentSourceIndex]
+        }
+        return
+    }
+    //Notify that its view was added to a view hierarchy
+    override func viewDidAppear(_ animated: Bool) {
+        if let collectionView = collectionView {
+            if collectionView.numberOfItems(inSection: 0) > 0 {
+                collectionView.reloadItems(at: [IndexPath(
+                    item: self.currentSourceIndex, section: 0)])
+            }
+        }
+    }
     
     func getDogs() {
         let parameters = ["limit": "5"]
