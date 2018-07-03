@@ -2,6 +2,11 @@ Guide for iDogView
 
 0 Step (Add the libraries, SwiftyJson, Alamofire, AloImage)
 
+	Create:
+	AboutDogsViewController -> UIViewController
+	DogsViewController -> UICollectionViewController
+	Assing all identifiers and Custom Class for all ViewControllers and Cell
+
 1 Step (Endpoints)
 
 Create a swift file on Network directory (DogApi)
@@ -56,7 +61,9 @@ Add the next code:
 		    }
 		}
 
-3 Step (Code Api)
+3 Step (Code Api for console)
+
+		On the file "DogsViewController.swift" add :
 
 			func testConnectivity() {
 	        Alamofire.request(DogApi.getDogs)
@@ -85,5 +92,33 @@ Add the next code:
         testConnectivity()     
     }
 
+4 Step (Api show data)
 
-    
+		On the file "DogsViewController" below "private let reuseIdentifier = "Cell"" add :
+
+			class DogsCell: UICollectionViewCell { (Assign the cell with its Custom Class)
+			    @IBOutlet var pictureImageView: UIImageView!
+			    
+			    func updateViews(from dog: Dog) {
+			        if let url = URL(string: dog.url){
+			            pictureImageView.af_setImage(withURL: url)
+			        }
+			    }
+			}
+
+		Below the "class DogsViewController: UICollectionViewController" add :
+			var dogs: [Dog] = []
+
+		numberOfSections -> return 1
+		collectionView -> return dogs.count
+		collectionView -> as! DogsCell
+
+		// Configure the cell
+        cell.updateViews(from: dogs[indexPath.row])
+        return cell
+
+        for last one add on api code:
+        	self.dogs = Dog.buildAll(from: json["data"].arrayValue)
+            self.collectionView!.reloadData()
+
+
