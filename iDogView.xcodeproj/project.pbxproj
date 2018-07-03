@@ -13,6 +13,8 @@
 		2570F6E420EB3C0C00269224 /* iDogView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2570F6E220EB3C0C00269224 /* iDogView.xcdatamodeld */; };
 		2570F6E620EB3C1000269224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2570F6E520EB3C1000269224 /* Assets.xcassets */; };
 		2570F6E920EB3C1000269224 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2570F6E720EB3C1000269224 /* LaunchScreen.storyboard */; };
+		2570F6F420EB4B8E00269224 /* AboutDogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2570F6F320EB4B8E00269224 /* AboutDogsViewController.swift */; };
+		2570F6F620EB4C0C00269224 /* DogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2570F6F520EB4C0C00269224 /* DogsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		2570F6E520EB3C1000269224 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2570F6E820EB3C1000269224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2570F6EA20EB3C1000269224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2570F6F320EB4B8E00269224 /* AboutDogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDogsViewController.swift; sourceTree = "<group>"; };
+		2570F6F520EB4C0C00269224 /* DogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 		2570F6DA20EB3C0C00269224 /* iDogView */ = {
 			isa = PBXGroup;
 			children = (
+				2570F6F020EB44DC00269224 /* ViewControllers */,
 				2570F6DB20EB3C0C00269224 /* AppDelegate.swift */,
 				2570F6DD20EB3C0C00269224 /* ViewController.swift */,
 				2570F6DF20EB3C0C00269224 /* Main.storyboard */,
@@ -65,6 +70,15 @@
 				2570F6E220EB3C0C00269224 /* iDogView.xcdatamodeld */,
 			);
 			path = iDogView;
+			sourceTree = "<group>";
+		};
+		2570F6F020EB44DC00269224 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2570F6F320EB4B8E00269224 /* AboutDogsViewController.swift */,
+				2570F6F520EB4C0C00269224 /* DogsViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,6 +154,8 @@
 			files = (
 				2570F6DE20EB3C0C00269224 /* ViewController.swift in Sources */,
 				2570F6DC20EB3C0C00269224 /* AppDelegate.swift in Sources */,
+				2570F6F620EB4C0C00269224 /* DogsViewController.swift in Sources */,
+				2570F6F420EB4B8E00269224 /* AboutDogsViewController.swift in Sources */,
 				2570F6E420EB3C0C00269224 /* iDogView.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +301,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P5K5LQ9R79;
 				INFOPLIST_FILE = iDogView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -302,6 +319,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = P5K5LQ9R79;
 				INFOPLIST_FILE = iDogView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
