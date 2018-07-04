@@ -15,18 +15,29 @@ private let reuseIdentifier = "Cell"
 
 class DogsCell: UICollectionViewCell {
     @IBOutlet var pictureImageView: UIImageView!
+    @IBOutlet var uploadedAtLabel: UILabel!
+    @IBOutlet weak var favoriteImageView: UIImageView!
+    var isFavorite: Bool = false
     
     func updateViews(from dog: Dog) {
+        uploadedAtLabel.text = dog.time
         if let url = URL(string: dog.url){
             pictureImageView.af_setImage(withURL: url)
         }
+        isFavorite = dog.isFavorite()
+        setFavoriteImage()
+    }
+    //Set image with assets
+    func setFavoriteImage() {
+        let imageName = isFavorite ? "favorite-black" : "favorite-border"
+        favoriteImageView.image = UIImage(named: imageName)
     }
 }
 
 class DogsViewController: UICollectionViewController {
     var dogs: [Dog] = []
     //Selected Item
-    var currentSourceIndex: Int = 0
+    var currentDogIndex: Int = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,7 +112,7 @@ class DogsViewController: UICollectionViewController {
     //Segue function
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected \(indexPath.row)")
-        currentSourceIndex = indexPath.row
+        currentDogIndex = indexPath.row
         self.performSegue(withIdentifier: "ShowAboutDog", sender: self)
     }
     //Send object data for another controller
@@ -109,7 +120,7 @@ class DogsViewController: UICollectionViewController {
         if segue.identifier == "ShowAboutDog" {
             let aboutDogsViewController = (segue.destination as!
             UINavigationController).viewControllers.first as! AboutDogsViewController
-            aboutDogsViewController.dog = dogs[currentSourceIndex]
+            aboutDogsViewController.dog = dogs[currentDogIndex]
         }
         return
     }
@@ -118,13 +129,13 @@ class DogsViewController: UICollectionViewController {
         if let collectionView = collectionView {
             if collectionView.numberOfItems(inSection: 0) > 0 {
                 collectionView.reloadItems(at: [IndexPath(
-                    item: self.currentSourceIndex, section: 0)])
+                    item: self.currentDogIndex, section: 0)])
             }
         }
     }
     
     func getDogs() {
-        let parameters = ["limit": "5"]
+        let parameters = ["limit": "20"]
         Alamofire.request(DogApi.getDogs, parameters: parameters)
         .validate()
         .responseJSON(completionHandler: { response in

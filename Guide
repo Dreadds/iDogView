@@ -123,7 +123,9 @@ Add the next code:
 
 5 Step (About Dog)
 		
-		add t
+		Below the "class DogsViewController: UICollectionViewController" add :
+
+			var currentSourceIndex: Int = 0
 
 		add the next code above "func getDogs() "
 
@@ -149,6 +151,29 @@ Add the next code:
 		                    item: self.currentSourceIndex, section: 0)])
 		            }
 		        }
-    }
+    		}
+
+    	On the AboutDogsViewController add the next above "class AboutDogsViewController: UIViewController"
+    		//Only a test
+	    	var dog : Dog? {
+		        didSet {
+		            print("Set \(dog!.id)")
+		        }
+		    }
+
+		    @IBOutlet weak var logoImageView: UIImageView!
+    		@IBOutlet weak var uploadedAt: UILabel!
+
+    	On the func "viewDidiLoad()" add :
+    		if let dog = dog{
+	            uploadedAt.text = dog.time
+	            if let url = URL(string: dog.url){
+	                logoImageView.af_setImage(withURL: url)
+	            }
+        	}
+
+        @IBAction func backAction(_ sender: UIBarButtonItem) {
+        	self.dismiss(animated: true, completion: nil)
+   		 }
 
 

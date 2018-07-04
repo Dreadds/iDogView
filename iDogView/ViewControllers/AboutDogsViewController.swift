@@ -11,6 +11,8 @@ import UIKit
 class AboutDogsViewController: UIViewController {
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var uploadedAt: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    var isFavorite: Bool = false
     //see data for "prepare function"
     var dog : Dog? {
         didSet {
@@ -27,12 +29,34 @@ class AboutDogsViewController: UIViewController {
             if let url = URL(string: dog.url){
                 logoImageView.af_setImage(withURL: url)
             }
+            //Update favorite state
+            isFavorite = dog.isFavorite()
+            setFavoriteImage()
         }
 
         // Do any additional setup after loading the view.
     }
+    
+    func toggleFavorite() {
+        isFavorite = !isFavorite
+        if let dog = dog{
+            dog.setFavorite(isFavorite: isFavorite)
+            let store = iDogStore()
+            print("Favorites: \(store.favoriteDogIdAsString())")
+        }
+        setFavoriteImage()
+    }
+    
+    func setFavoriteImage() {
+        let name = isFavorite ? "favorite-black" : "favorite-border"
+        favoriteButton.setImage(UIImage(named: name), for: .normal)
+    }
 
     @IBAction func backAction(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func favoriteAction(_ sender: UIButton) {
+        toggleFavorite()
     }
 }

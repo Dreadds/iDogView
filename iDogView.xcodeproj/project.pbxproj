@@ -23,6 +23,7 @@
 		2570F74F20EB539F00269224 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2570F72220EB536800269224 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2570F75220EB53A500269224 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2570F73C20EB537500269224 /* AlamofireImage.framework */; };
 		2570F75320EB53A500269224 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2570F73C20EB537500269224 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		2570F77C20EC921400269224 /* iDogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2570F77B20EC921400269224 /* iDogStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		2570F6FD20EB535C00269224 /* SwiftyJSON.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SwiftyJSON.xcodeproj; path = ../SwiftyJSON/SwiftyJSON.xcodeproj; sourceTree = "<group>"; };
 		2570F71620EB536700269224 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		2570F72F20EB537500269224 /* AlamofireImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlamofireImage.xcodeproj; path = ../AlamofireImage/AlamofireImage.xcodeproj; sourceTree = "<group>"; };
+		2570F77B20EC921400269224 /* iDogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iDogStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 			isa = PBXGroup;
 			children = (
 				2570F6FB20EB529B00269224 /* Dog.swift */,
+				2570F77B20EC921400269224 /* iDogStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 			files = (
 				2570F6DE20EB3C0C00269224 /* ViewController.swift in Sources */,
 				2570F6FC20EB529B00269224 /* Dog.swift in Sources */,
+				2570F77C20EC921400269224 /* iDogStore.swift in Sources */,
 				2570F6DC20EB3C0C00269224 /* AppDelegate.swift in Sources */,
 				2570F6F620EB4C0C00269224 /* DogsViewController.swift in Sources */,
 				2570F6F920EB4F5200269224 /* DogApi.swift in Sources */,

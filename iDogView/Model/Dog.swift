@@ -34,7 +34,18 @@ class Dog {
                   verified: jsonDog["verified"].stringValue,
                   checked: jsonDog["checked"].stringValue)
     }
+    //Favorites
+    func isFavorite() -> Bool {
+        let store = iDogStore()
+        return store.isFavorite(dog: self)
+    }
     
+    func setFavorite(isFavorite: Bool){
+        let store = iDogStore()
+        store.setFavorite(isFavorite, for: self)
+    }
+    
+    //json
     static func buildAll(from jsonDogs: [JSON]) -> [Dog] {
         var dogs: [Dog] = []
         let count = jsonDogs.count
