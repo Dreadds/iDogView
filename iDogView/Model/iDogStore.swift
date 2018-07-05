@@ -46,10 +46,13 @@ class iDogStore {
         let newFavorite = NSManagedObject(entity: favoriteEntity!, insertInto: context)
         newFavorite.setValue(dog.id, forKey: "id")
         newFavorite.setValue(dog.url, forKey: "url")
-        newFavorite.setValue(dog.time, forKey: "uploadedAtList")
+        newFavorite.setValue(dog.time, forKey: "uploadedAt")
         newFavorite.setValue(Date(), forKey: "createdAt")
         save()
     }
+    
+    
+    
     // find favorite by ID, it's the same with name
     func findFavoriteById(for dog: Dog) -> NSManagedObject? {
         let predicate = NSPredicate(format: "id= %@", dog.id)

@@ -3,7 +3,7 @@
     <entity name="Favorite" representedClassName="Favorite" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uploadedAtList" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="uploadedAt" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>

@@ -15,12 +15,12 @@ private let reuseIdentifier = "Cell"
 
 class DogsCell: UICollectionViewCell {
     @IBOutlet var pictureImageView: UIImageView!
-    @IBOutlet var uploadedAtLabel: UILabel!
+    @IBOutlet var dateLabel: UILabel!
     @IBOutlet weak var favoriteImageView: UIImageView!
     var isFavorite: Bool = false
     
     func updateViews(from dog: Dog) {
-        uploadedAtLabel.text = dog.time
+        dateLabel.text = dog.time
         if let url = URL(string: dog.url){
             pictureImageView.af_setImage(withURL: url)
         }
@@ -107,8 +107,8 @@ class DogsViewController: UICollectionViewController {
         return false
     }
      */
-    //override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
-    //}
+    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    }
     //Segue function
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected \(indexPath.row)")

@@ -24,6 +24,7 @@
 		2570F75220EB53A500269224 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2570F73C20EB537500269224 /* AlamofireImage.framework */; };
 		2570F75320EB53A500269224 /* AlamofireImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2570F73C20EB537500269224 /* AlamofireImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2570F77C20EC921400269224 /* iDogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2570F77B20EC921400269224 /* iDogStore.swift */; };
+		2570F79520EDB50300269224 /* MyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2570F79420EDB50300269224 /* MyList.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -230,6 +231,7 @@
 		2570F71620EB536700269224 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = ../Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		2570F72F20EB537500269224 /* AlamofireImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AlamofireImage.xcodeproj; path = ../AlamofireImage/AlamofireImage.xcodeproj; sourceTree = "<group>"; };
 		2570F77B20EC921400269224 /* iDogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iDogStore.swift; sourceTree = "<group>"; };
+		2570F79420EDB50300269224 /* MyList.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = MyList.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,16 +270,13 @@
 		2570F6DA20EB3C0C00269224 /* iDogView */ = {
 			isa = PBXGroup;
 			children = (
+				2570F79320EDB4AD00269224 /* Main */,
+				2570F79220EDB48300269224 /* Resources */,
 				2570F6FA20EB526900269224 /* Model */,
 				2570F6F720EB4E4600269224 /* Network */,
 				2570F6F020EB44DC00269224 /* ViewControllers */,
-				2570F6DB20EB3C0C00269224 /* AppDelegate.swift */,
-				2570F6DD20EB3C0C00269224 /* ViewController.swift */,
-				2570F6DF20EB3C0C00269224 /* Main.storyboard */,
-				2570F6E520EB3C1000269224 /* Assets.xcassets */,
-				2570F6E720EB3C1000269224 /* LaunchScreen.storyboard */,
 				2570F6EA20EB3C1000269224 /* Info.plist */,
-				2570F6E220EB3C0C00269224 /* iDogView.xcdatamodeld */,
+				2570F79420EDB50300269224 /* MyList.plist */,
 			);
 			path = iDogView;
 			sourceTree = "<group>";
@@ -285,6 +284,7 @@
 		2570F6F020EB44DC00269224 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				2570F6DD20EB3C0C00269224 /* ViewController.swift */,
 				2570F6F320EB4B8E00269224 /* AboutDogsViewController.swift */,
 				2570F6F520EB4C0C00269224 /* DogsViewController.swift */,
 			);
@@ -302,6 +302,7 @@
 		2570F6FA20EB526900269224 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2570F6E220EB3C0C00269224 /* iDogView.xcdatamodeld */,
 				2570F6FB20EB529B00269224 /* Dog.swift */,
 				2570F77B20EC921400269224 /* iDogStore.swift */,
 			);
@@ -348,6 +349,24 @@
 				2570F74820EB537500269224 /* AlamofireImage.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2570F79220EDB48300269224 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2570F6E720EB3C1000269224 /* LaunchScreen.storyboard */,
+				2570F6E520EB3C1000269224 /* Assets.xcassets */,
+				2570F6DF20EB3C0C00269224 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		2570F79320EDB4AD00269224 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2570F6DB20EB3C0C00269224 /* AppDelegate.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,6 +595,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2570F79520EDB50300269224 /* MyList.plist in Resources */,
 				2570F6E920EB3C1000269224 /* LaunchScreen.storyboard in Resources */,
 				2570F6E620EB3C1000269224 /* Assets.xcassets in Resources */,
 				2570F6E120EB3C0C00269224 /* Main.storyboard in Resources */,

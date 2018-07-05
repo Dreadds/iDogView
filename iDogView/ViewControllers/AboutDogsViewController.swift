@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import SwiftyPlistManager
 
 class AboutDogsViewController: UIViewController {
     @IBOutlet weak var logoImageView: UIImageView!
@@ -35,6 +36,9 @@ class AboutDogsViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view.
+        
+        
+        
     }
     
     func toggleFavorite() {
