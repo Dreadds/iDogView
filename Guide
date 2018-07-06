@@ -1,5 +1,13 @@
 Guide for iDogView
 
+Bundle Indentifier: com.dreads/ pe.edu.upc
+Groups: Model, Resources, ViewController, Network, Main
+Model: Class for objects and Repository, CoreData
+Resources: StoryBoards and Assets
+Network: Api Class
+Main: AppDelegate
+
+
 0 Step (Add the libraries, SwiftyJson, Alamofire, AloImage)
 
 	Create:
@@ -11,6 +19,7 @@ Guide for iDogView
 
 Create a swift file on Network directory (DogApi)
 
+
 Add the next code:
 
 		class DogApi {
@@ -19,6 +28,13 @@ Add the next code:
 	    public static var getDogs: String {
 	        return "\(baseurl)/v2/dog.php"
 	    }
+
+
+	    for key
+		    public static var key: String {
+	        return Bundle.main.object(
+	            forInfoDictionaryKey: "NewsApiKey") as! String
+	    	}
 	}
 
 2 Step (Model)
@@ -64,8 +80,16 @@ Add the next code:
 3 Step (Code Api for console)
 
 		On the file "DogsViewController.swift" add :
+		import SwiftyJSON
+		import Alamofire
+		import AlamofireImage
 
-			func getDogs {
+			func getDogs() {
+			//If we get a key
+			//let parameters = ["apiKey" : NewsApi.key]
+			//let parameters = ["limit": "20"]
+			//let parameters = ["apiKey" : NewsApi.key, "country" : "us"]
+			//Alamofire.request(NewsApi.sourcesUrl, parameters: parameters)
 	        Alamofire.request(DogApi.getDogs)
 	        .validate()
 	        .responseJSON(completionHandler: { response in
@@ -74,15 +98,20 @@ Add the next code:
 	                let json = JSON(value)
 	                print(json)
 	                let error = json["status"].stringValue
+	                //if response.response?.statusCode == 200 {
 	                if error != "null"{
 	                    let dogs = Dog.buildAll(from: json["data"].arrayValue)
 	                    print("Found \(dogs.count) Dogs")
+	                    //let quote = Quote.buildAll(from: JSON(value).arrayValue)
+	                    //self.dogs = Dog.buildAll(from: json["data"].arrayValue)
+                    	//self.collectionView!.reloadData()
 	                }
 	            case .failure(let error):
 	                print("Networking Error: \(error.localizedDescription)")
 	            }
 	            
 	        })
+	    }
 	    }
 
 	And add the funcion on 
@@ -291,6 +320,19 @@ Add the next code:
 		    }
 		}
 
+	On Dog.swift add :
+
+			 //Favorites
+	    func isFavorite() -> Bool {
+	        let store = iDogStore()
+	        return store.isFavorite(dog: self)
+	    }
+	    
+	    func setFavorite(isFavorite: Bool){
+	        let store = iDogStore()
+	        store.setFavorite(isFavorite, for: self)
+	    }
+
 	On DogsViewController.swift add above "DogsCell" :
 
 		@IBOutlet weak var favoriteImageView: UIImageView!
@@ -301,13 +343,13 @@ Add the next code:
    		isFavorite = dog.isFavorite()
         setFavoriteImage()
 
-    add the func :
+	    add the func on "DogsCell" :
 
-    	//Set image with assets
-	    func setFavoriteImage() {
-	        let imageName = isFavorite ? "favorite-black" : "favorite-border"
-	        favoriteImageView.image = UIImage(named: imageName)
-	    }
+	    	//Set image with assets
+		    func setFavoriteImage() {
+		        let imageName = isFavorite ? "favorite-black" : "favorite-border"
+		        favoriteImageView.image = UIImage(named: imageName)
+		    }
 	
 	On AboutDogsViewController add:
 
@@ -327,7 +369,7 @@ Add the next code:
             setFavoriteImage()
         }
 
-    add the funcs 
+    add the funcs on "AboutDogsViewController"
 
 	    func toggleFavorite() {
 	        isFavorite = !isFavorite
@@ -349,7 +391,76 @@ Add the next code:
 	    }
 
 
+7 Step (show favorites)
 
+		On FavoritesViewController(Collection) add:
+			class FavoriteCell: UICollectionViewCell {
+			    @IBOutlet var pictureImageView: UIImageView!
+			    @IBOutlet var titleLabel: UILabel!
+		    
+			    func updateView(from dog: Dog) {
+			        titleLabel.text = dog.time
+			        if let url = URL(string: dog.url){
+			            pictureImageView.af_setImage(withURL: url)
+			        }
+			    }
+			}
+
+
+		Below the "class FavoriteViewController: UICollectionViewController" add :
+			var dogs: [Dog] = []
+			@IBOutlet weak var noFavoritesLabel: UILabel!
+
+			on override func viedDidLoad(){
+			super.viewDidLoad()
+        	noFavoritesLabel.isHidden = true
+			}
+
+		numberOfSections -> return 1
+		collectionView -> return dogs.count
+		collectionView -> as! DogsCell
+
+		// Configure the cell
+        cell.updateViews(from: dogs[indexPath.row])
+        return cell
+
+        add the function
+
+        override func viewDidAppear(_ animated: Bool) {
+        updateData()
+    	}
+
+        func updateData() {
+        let store = iQuoteStore()
+        let favoriteQuotes = store.favoriteQuoteAsString()
+        if favoriteQuotes.isEmpty {
+            self.quotes  = []
+            collectionView!.reloadData()
+            noFavoritesLabel.isHidden = false
+            return
+        }
+        Alamofire.request(QuoteApi.getHundredQuotes)
+            .validate()
+            .responseJSON(completionHandler: {response in
+                switch response.result{
+                case .success(let value):
+                    let json = JSON(value)
+                    print(json)
+                    //let error = json["status"].stringValue
+                    if response.response?.statusCode == 200 {
+                        //print(response.value as Any)
+                        self.quotes = Quote.buildAll(from: JSON(value).arrayValue)
+                        //let quote = Quote.buildAll(from: json.arrayValue)
+                        //let quote = Quote.build(from: JSON(value).arrayValue)
+                        // print("Found \(quote.count) Quotes")
+                        self.collectionView?.reloadData()
+                    }
+                case .failure(let error):
+                    print("Networking Error: \(error.localizedDescription)" )
+                }
+                
+            })
+    }
 
 
 
